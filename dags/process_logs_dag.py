@@ -5,6 +5,8 @@ from airflow.providers.microsoft.azure.operators.cosmos import AzureCosmosInsert
 from azure.identity import ClientSecretCredential
 from azure.storage.queue import QueueClient
 from airflow.models import Variable
+from kusto_helper import get_kusto_query
+from azure_helper import build_clientSecretCredential
 import json
 import uuid
 import os
@@ -26,28 +28,7 @@ def process_logs_dag():
     def query_kusto():       
         queryResult =  AzureDataExplorerQueryOperator(
             task_id='logs',
-            query='''
-                let 4xx = apiLogs
-                | where message startswith "4XX Error Random number"
-                | where startofday(['datetime']) == startofday(now())
-                | where datetime_part("hour", ['datetime']) == datetime_part("hour", now())
-                | extend type = "4XX"
-                | project correlationId, type;
-                let 5xx = apiLogs
-                | where message startswith "InternalServer Error Random number"
-                | where startofday(['datetime']) == startofday(now())
-                | where datetime_part("hour", ['datetime']) == datetime_part("hour", now())
-                | extend type = "5XX"
-                | project correlationId, type;
-                apiLogs
-                | where message endswith "returned successfully"
-                | where startofday(['datetime']) == startofday(now())
-                | where datetime_part("hour", ['datetime']) == datetime_part("hour", now())
-                | extend type = "2XX"
-                | project correlationId, type
-                | union ( ['4xx'] )
-                | union ( ['5xx'] )
-            ''',
+            query=get_kusto_query(),
             database=Variable.get("DEMO_KUSTO_DATABASE"),
             azure_data_explorer_conn_id='adx'
         ).execute(context=None)
@@ -76,14 +57,11 @@ def process_logs_dag():
 
     @task()
     def send_alert_to_queue(process_kusto_data):
-        queue_client = QueueClient(
-            account_url=Variable.get("DEMO_STORAGE_ACCOUNT"), 
+        QueueClient(
+            account_url=Variable.get("DEMO_STORAGE_ACCOUNT"),
             queue_name=Variable.get("DEMO_QUEUE_NAME"),
-            credential=ClientSecretCredential(
-                Variable.get('DEMO_TENANT_ID'),
-                Variable.get('DEMO_CLIENT_ID'),
-                Variable.get('DEMO_CLIENT_SECRET')))
-        queue_client.send_message(json.dumps(process_kusto_data))
+            credential=build_clientSecretCredential()
+            ).send_message(json.dumps(process_kusto_data))
 
     kusto_data = query_kusto()
     processed_data = process_kusto_data(kusto_data)

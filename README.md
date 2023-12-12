@@ -3,7 +3,7 @@
 Contoso Corporation faces challenges in efficiently analyzing API failures recorded in Kusto logs, hindering prompt issue identification. This GitHub repository offers a robust solution for analyzing API failures recorded in Kusto using Astronomer on Azure. The workflow seamlessly configures an Astronomer resource from the Azure, establishes Single Sign-On (SSO) integration with an Astronomer organization in a designated workspace, and deploys a Directed Acyclic Graph (DAG) through the user-friendly Astronomer or Airflow UI. Solution implemented is described in the image follows:
 <img width="1489" alt="Worksflow" src="https://github.com/Azure/AirflowMeetHyderabadDemo2023/assets/40313233/85717726-9890-4f60-b456-597a782cdbf8">
 
-## Pre-requisite
+## Pre-requisites
 1. **App Registration in Azure Entra**: Create and register your Azure AAD/Entra application and keep ApplicationId, ClientSecret, TenantId with you for later configurations and settings, know more about Apps on Azure Entra [here](https://learn.microsoft.com/en-us/entra/identity-platform/app-objects-and-service-principals?tabs=browser).
    
 ![image](https://github.com/Azure/AirflowMeetHyderabadDemo2023/assets/40313233/1c5a5eda-65c0-442d-b612-89ff4d91181b)

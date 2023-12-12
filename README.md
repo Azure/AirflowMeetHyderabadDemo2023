@@ -49,7 +49,7 @@ Contoso Corporation faces challenges in efficiently analyzing API failures recor
 | `DEMO_STORAGE_ACCOUNT`   | Storage account name to be used                       |
 | `DEMO_TENANT_ID`         | TenantId for components to used.                      |
 12.  Create a new connection with `adx` id for Azure Data Explorer from Admin > Connections. Select Connection Type as: `Azure Data Explorer`, provide cluster url, provide client/appId in cluster name, provide clientSecret in Password, add TenatID and in Authentication Method select `AAD_APP`. Ref screenshot below: ![image](https://github.com/Azure/AirflowMeetHyderabadDemo2023/assets/40313233/e1f31116-7ea9-482c-b424-5f5399b71bee)
-13.  Create another connection with id as `cosmos_db` and select connection type as: `Azure CosmosDB`, privide CosmosEnpoint and in Cosmos Master Key Token provide primary key for Comsos DB  ![image](https://github.com/Azure/AirflowMeetHyderabadDemo2023/assets/40313233/764ce919-1586-4c84-8864-18c45b5eda8b)
+13.  Create another connection with id as `cosmos_db` and select connection type as: `Azure CosmosDB`, provide CosmosEndpoint and in Cosmos Master Key Token provide primary key for Comsos DB  ![image](https://github.com/Azure/AirflowMeetHyderabadDemo2023/assets/40313233/764ce919-1586-4c84-8864-18c45b5eda8b)
 14.  Once done, go ahead and click run from Astronomer portal, your DAG should be running in a few minutes. 
 
 

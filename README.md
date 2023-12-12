@@ -1,17 +1,23 @@
-# Overview
+## Overview
  
-Contoso Corporation faces challenges in efficiently analyzing API failures recorded in Kusto logs, hindering prompt issue identification. This GitHub repository offers a robust solution for analyzing API failures recorded in Kusto using Astro on Azure. The workflow seamlessly configures an Astronomer resource from the Azure Marketplace, establishes Single Sign-On (SSO) integration with an Astronomer organization in a designated workspace, and deploys a Directed Acyclic Graph (DAG) through the user-friendly Astronomer or Ai
+Contoso Corporation faces challenges in efficiently analyzing API failures recorded in Kusto logs, hindering prompt issue identification. This GitHub repository offers a robust solution for analyzing API failures recorded in Kusto using Astro on Azure. The workflow seamlessly configures an Astronomer resource from the Azure Marketplace, establishes Single Sign-On (SSO) integration with an Astronomer organization in a designated workspace, and deploys a Directed Acyclic Graph (DAG) through the user-friendly Astronomer or Airflow UI.
+![image](https://github.com/Azure/AirflowMeetHyderabadDemo2023/assets/40313233/8b8a0970-a03d-4499-ab48-c62b8bae0b2f)
+
+
+## Pre-requisite
+1. **App Registration in Azure Entra**: Create and register your Azure AAD/Entra application and keep ApplicationId, ClientSecret, TenantId with you for later configurations and settings, know more about Apps on Azure Entra [here](https://learn.microsoft.com/en-us/entra/identity-platform/app-objects-and-service-principals?tabs=browser).
+
  
 ## Key Steps
 1. Astronomer Resource Creation
- 
+   
     Begin by creating an Astronomer resource from the Azure Marketplace. This resource will be seamlessly linked via Single Sign-On (SSO) with an Astronomer organization within the designated workspace.
  
-2. Deployment through Astronomer or Airflow UI
+3. Deployment through Astronomer or Airflow UI
  
     Create a deployment on the above mentioned Astronomer organization ad utilize the Astronomer or Airflow UI to deploy a DAG specifically designed for retrieving and analyzing logs from Kusto. The processed data will be stored in Azure Cosmos DB.
  
-3. Alert Triggering and Azure Queue Storage
+4. Alert Triggering and Azure Queue Storage
  
     The DAG is configured to parallelly trigger alerts based on the processed data. These alerts are then forwarded to Azure Queue Storage for subsequent processing.
  

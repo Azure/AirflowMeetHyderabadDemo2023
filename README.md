@@ -9,6 +9,19 @@ Contoso Corporation faces challenges in efficiently analyzing API failures recor
 ![image](https://github.com/Azure/AirflowMeetHyderabadDemo2023/assets/40313233/9cffe25f-d6f8-4f34-a93a-f1204658ac8c)
 ![image](https://github.com/Azure/AirflowMeetHyderabadDemo2023/assets/40313233/021f6659-a4bd-433b-a335-69727ea2f5e1)
 
+2. **Assign App to Kusto Database**: Assign application to kusto database and keep Data Explorer Connection String, ClientId, ClientSecret and TenantID for the app for further steps.
+![image](https://github.com/Azure/AirflowMeetHyderabadDemo2023/assets/40313233/113edfa5-5a25-4e0d-8aa9-ba98f31a1ecf)
+![image](https://github.com/Azure/AirflowMeetHyderabadDemo2023/assets/40313233/76fb5f04-8dc6-412f-b2c6-06d169f45238)
+
+3. **Create CosmosDB**: Create Cosmos DB and keep secret and connection string safe.
+![image](https://github.com/Azure/AirflowMeetHyderabadDemo2023/assets/40313233/40b79409-0a26-4e74-9142-cb8b6585b732)
+![image](https://github.com/Azure/AirflowMeetHyderabadDemo2023/assets/40313233/2aaba837-6a70-47f3-a3c7-558ac8e769c7)
+
+4. **Create StorageAccount**: Create Storage Account, and queue and provide necessary permissions for them to app created in first step.
+![image](https://github.com/Azure/AirflowMeetHyderabadDemo2023/assets/40313233/a3e9fca9-c898-4f04-a1f5-93594910606f)
+
+
+
 ## Key Steps
 1. Astronomer Resource Creation
    

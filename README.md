@@ -1,17 +1,18 @@
 ## Overview
  
-Contoso Corporation faces challenges in efficiently analyzing API failures recorded in Kusto logs, hindering prompt issue identification. This GitHub repository offers a robust solution for analyzing API failures recorded in Kusto using Astro on Azure. The workflow seamlessly configures an Astronomer resource from the Azure Marketplace, establishes Single Sign-On (SSO) integration with an Astronomer organization in a designated workspace, and deploys a Directed Acyclic Graph (DAG) through the user-friendly Astronomer or Airflow UI.
-![image](https://github.com/Azure/AirflowMeetHyderabadDemo2023/assets/40313233/8b8a0970-a03d-4499-ab48-c62b8bae0b2f)
-
+Contoso Corporation faces challenges in efficiently analyzing API failures recorded in Kusto logs, hindering prompt issue identification. This GitHub repository offers a robust solution for analyzing API failures recorded in Kusto using Astronomer on Azure. The workflow seamlessly configures an Astronomer resource from the Azure, establishes Single Sign-On (SSO) integration with an Astronomer organization in a designated workspace, and deploys a Directed Acyclic Graph (DAG) through the user-friendly Astronomer or Airflow UI. Solution implemented is described in the image follows
+<img width="1489" alt="Worksflow" src="https://github.com/Azure/AirflowMeetHyderabadDemo2023/assets/40313233/85717726-9890-4f60-b456-597a782cdbf8">
 
 ## Pre-requisite
 1. **App Registration in Azure Entra**: Create and register your Azure AAD/Entra application and keep ApplicationId, ClientSecret, TenantId with you for later configurations and settings, know more about Apps on Azure Entra [here](https://learn.microsoft.com/en-us/entra/identity-platform/app-objects-and-service-principals?tabs=browser).
+![image](https://github.com/Azure/AirflowMeetHyderabadDemo2023/assets/40313233/1c5a5eda-65c0-442d-b612-89ff4d91181b)
+![image](https://github.com/Azure/AirflowMeetHyderabadDemo2023/assets/40313233/9cffe25f-d6f8-4f34-a93a-f1204658ac8c)
+![image](https://github.com/Azure/AirflowMeetHyderabadDemo2023/assets/40313233/021f6659-a4bd-433b-a335-69727ea2f5e1)
 
- 
 ## Key Steps
 1. Astronomer Resource Creation
    
-    Begin by creating an Astronomer resource from the Azure Marketplace. This resource will be seamlessly linked via Single Sign-On (SSO) with an Astronomer organization within the designated workspace.
+    Begin by creating an Astronomer resource from the Azure. This resource will be seamlessly linked via Single Sign-On (SSO) with an Astronomer organization within the designated workspace.
  
 3. Deployment through Astronomer or Airflow UI
  

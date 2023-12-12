@@ -33,7 +33,7 @@ Contoso Corporation faces challenges in efficiently analyzing API failures recor
 5.  Clone this repository use: `git clone https://github.com/Azure/AirflowMeetHyderabadDemo2023`
 6.  Install Astro CLI, use: <a href="https://docs.astronomer.io/astro/cli/install-cli">https://docs.astronomer.io/astro/cli/install-cli</a>
 7.  Use `astro login` and follow prompted steps to login using the same your microsoft account used in Azure.
-8.  Use `astro workspace list` to list your worspaces and make sure that you are in the currect workspace.
+8.  Use `astro workspace list` to list your workspaces and make sure that you are in the currect workspace.
 9.  Use `astro deploy` to deploy the code in your astro deployment created in step 4.
 10.  From deployment created in step 4, navigate to "Open in Airflow" ![image](https://github.com/Azure/AirflowMeetHyderabadDemo2023/assets/40313233/feb860ed-5cad-480f-9461-73c3ecbd24c4)
 11.  In Airflow UI, select Admin > Variables and create following variables
@@ -48,7 +48,9 @@ Contoso Corporation faces challenges in efficiently analyzing API failures recor
 | `DEMO_QUEUE_NAME`        | Name of the queue to be used                          |
 | `DEMO_STORAGE_ACCOUNT`   | Storage account name to be used                       |
 | `DEMO_TENANT_ID`         | TenantId for components to used.                      |
-12. Create a new connection with `adx` id for Azure Data Explorer from Admin > Connections. Select Connection Type as: Azure Data Explorer, provide cluster url, provide client/appId in cluster name, provide clientSecret in Password, add TenatID and in Authentication Method select `AAD_APP`. Ref screenshot below: ![image](https://github.com/Azure/AirflowMeetHyderabadDemo2023/assets/40313233/e1f31116-7ea9-482c-b424-5f5399b71bee)
+12.  Create a new connection with `adx` id for Azure Data Explorer from Admin > Connections. Select Connection Type as: `Azure Data Explorer`, provide cluster url, provide client/appId in cluster name, provide clientSecret in Password, add TenatID and in Authentication Method select `AAD_APP`. Ref screenshot below: ![image](https://github.com/Azure/AirflowMeetHyderabadDemo2023/assets/40313233/e1f31116-7ea9-482c-b424-5f5399b71bee)
+13.  Create another connection with id as `cosmos_db` and select connection type as: `Azure CosmosDB`, privide CosmosEnpoint and in Cosmos Master Key Token provide primary key for Comsos DB  ![image](https://github.com/Azure/AirflowMeetHyderabadDemo2023/assets/40313233/764ce919-1586-4c84-8864-18c45b5eda8b)
+14.  Once done, go ahead and click run from Astronomer portal, your DAG should be running in a few minutes. 
 
 
 ## DAG Details

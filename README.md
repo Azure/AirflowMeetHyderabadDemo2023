@@ -5,36 +5,52 @@ Contoso Corporation faces challenges in efficiently analyzing API failures recor
 
 ## Pre-requisite
 1. **App Registration in Azure Entra**: Create and register your Azure AAD/Entra application and keep ApplicationId, ClientSecret, TenantId with you for later configurations and settings, know more about Apps on Azure Entra [here](https://learn.microsoft.com/en-us/entra/identity-platform/app-objects-and-service-principals?tabs=browser).
+   
 ![image](https://github.com/Azure/AirflowMeetHyderabadDemo2023/assets/40313233/1c5a5eda-65c0-442d-b612-89ff4d91181b)
 ![image](https://github.com/Azure/AirflowMeetHyderabadDemo2023/assets/40313233/9cffe25f-d6f8-4f34-a93a-f1204658ac8c)
 ![image](https://github.com/Azure/AirflowMeetHyderabadDemo2023/assets/40313233/021f6659-a4bd-433b-a335-69727ea2f5e1)
 
-2. **Assign App to Kusto Database**: Assign application to kusto database and keep Data Explorer Connection String, ClientId, ClientSecret and TenantID for the app for further steps.
+2. **Assign App to Kusto Database**: Assign application to kusto database and keep Data Explorer Connection String, ClientId, ClientSecret and TenantID for the app for further steps. Make sure necessary data is present in Kusto Database. To learn more about Kusto and Azure Data Explorer refer [link](https://learn.microsoft.com/en-us/azure/data-explorer/data-explorer-overview)
+   
 ![image](https://github.com/Azure/AirflowMeetHyderabadDemo2023/assets/40313233/113edfa5-5a25-4e0d-8aa9-ba98f31a1ecf)
 ![image](https://github.com/Azure/AirflowMeetHyderabadDemo2023/assets/40313233/76fb5f04-8dc6-412f-b2c6-06d169f45238)
 
-3. **Create CosmosDB**: Create Cosmos DB and keep secret and connection string safe.
+3. **Create CosmosDB**: Create Cosmos DB and keep secret and connection string safe. To learn more about CosmoDB refer [link](https://learn.microsoft.com/en-us/azure/cosmos-db/introduction)
+   
 ![image](https://github.com/Azure/AirflowMeetHyderabadDemo2023/assets/40313233/40b79409-0a26-4e74-9142-cb8b6585b732)
 ![image](https://github.com/Azure/AirflowMeetHyderabadDemo2023/assets/40313233/2aaba837-6a70-47f3-a3c7-558ac8e769c7)
 
-4. **Create StorageAccount**: Create Storage Account, and queue and provide necessary permissions for them to app created in first step.
-![image](https://github.com/Azure/AirflowMeetHyderabadDemo2023/assets/40313233/a3e9fca9-c898-4f04-a1f5-93594910606f)
+4. **Create StorageAccount**: Create Storage Account, and queue and provide necessary permissions for them to app created in first step. To learn more about storage queue refer [link](https://learn.microsoft.com/en-us/azure/storage/queues/storage-queues-introduction)
+![image](https://github.com/Azure/AirflowMeetHyderabadDemo2023/assets/40313233/8e246663-75a0-4bdf-8fe3-6a8bca712911)
 
 
 
-## Key Steps
-1. Astronomer Resource Creation
-   
-    Begin by creating an Astronomer resource from the Azure. This resource will be seamlessly linked via Single Sign-On (SSO) with an Astronomer organization within the designated workspace.
- 
-3. Deployment through Astronomer or Airflow UI
- 
-    Create a deployment on the above mentioned Astronomer organization ad utilize the Astronomer or Airflow UI to deploy a DAG specifically designed for retrieving and analyzing logs from Kusto. The processed data will be stored in Azure Cosmos DB.
- 
-4. Alert Triggering and Azure Queue Storage
- 
-    The DAG is configured to parallelly trigger alerts based on the processed data. These alerts are then forwarded to Azure Queue Storage for subsequent processing.
- 
+## How to run?
+1. Go to [Azure portal](https://portal.azure.com) and search for Astronomer and hit Create. ![image](https://github.com/Azure/AirflowMeetHyderabadDemo2023/assets/40313233/675dfa24-a4b9-417b-b2b5-620a743f975d)
+2. Fill the resource creation form with details including Subscription, Resource Group, Azure Resource Name, Region, Astro Organization Name, Astro Workspace Name, Billing Term, Price+Payment options and hit "review+create". ![image](https://github.com/Azure/AirflowMeetHyderabadDemo2023/assets/40313233/8b6c0e3c-d99e-4c2a-b11a-4aa77a3b00e3)
+3.  Once Create is succeful open the create resource and navigate to Astronomer from using the SSO link in resoure. ![image](https://github.com/Azure/AirflowMeetHyderabadDemo2023/assets/40313233/6ce96b74-af2e-4b90-b777-faad6ca0bd44)
+4.  Create a new deployment on Astronomer portal and hit "Create Deployment". ![image](https://github.com/Azure/AirflowMeetHyderabadDemo2023/assets/40313233/69fcc823-142a-40f1-aff5-d06ef5ddba94)
+5.  Clone this repository use: `git clone https://github.com/Azure/AirflowMeetHyderabadDemo2023`
+6.  Install Astro CLI, use: <a href="https://docs.astronomer.io/astro/cli/install-cli">https://docs.astronomer.io/astro/cli/install-cli</a>
+7.  Use `astro login` and follow prompted steps to login using the same your microsoft account used in Azure.
+8.  Use `astro workspace list` to list your worspaces and make sure that you are in the currect workspace.
+9.  Use `astro deploy` to deploy the code in your astro deployment created in step 4.
+10.  From deployment created in step 4, navigate to "Open in Airflow" ![image](https://github.com/Azure/AirflowMeetHyderabadDemo2023/assets/40313233/feb860ed-5cad-480f-9461-73c3ecbd24c4)
+11.  In Airflow UI, select Admin > Variables and create following variables
+     
+| **Varaible**             | **Value**                                             |
+|--------------------------|-------------------------------------------------------|
+| `DEMO_CLIENT_ID`         | ClientId/AppId for AAD/Entra Application Created      |
+| `DEMO_CLIENT_SECRET`     | ClientSecret for the above app                        |
+| `DEMO_COSMOS_COLLECTION` | Collection Name to be used in CosmosDB                |
+| `DEMO_COSMOS_DATABASE`   | Database Name to be used in CosmosDB                  |
+| `DEMO_KUSTO_DATABASE`    | Database Name to be used in Kusto/Azure Data Explorer |
+| `DEMO_QUEUE_NAME`        | Name of the queue to be used                          |
+| `DEMO_STORAGE_ACCOUNT`   | Storage account name to be used                       |
+| `DEMO_TENANT_ID`         | TenantId for components to used.                      |
+12. Create a new connection with `adx` id for Azure Data Explorer from Admin > Connections. Select Connection Type as: Azure Data Explorer, provide cluster url, provide client/appId in cluster name, provide clientSecret in Password, add TenatID and in Authentication Method select `AAD_APP`. Ref screenshot below: ![image](https://github.com/Azure/AirflowMeetHyderabadDemo2023/assets/40313233/e1f31116-7ea9-482c-b424-5f5399b71bee)
+
+
 ## DAG Details
 The DAG orchestrates the following tasks:
  
